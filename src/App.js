@@ -1,14 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-import Navigation from './customer/components/Navigation/Navigation';
+import "./App.css";
+import Footer from "./customer/components/Footer/footer";
+import Navigation from "./customer/components/Navigation/Navigation.jsx";
+import Product from "./customer/components/Product/Product.jsx";
+import HomePage from "./customer/Pages/HomePage";
+import { createTheme, ThemeProvider } from "@mui/material";
+//import { createMuiTheme } from "@material-ui/core/styles";
+
 
 function App() {
+
+  const theme= createTheme({
+    typography: {
+      fontFamily: ["Jost", " sans-serif"].join(","),
+    },
+  });
+
   return (
     <div className="">
-      <Navigation/>
+      <Navigation />
       <div>
-        Home
+        {/* <HomePage /> */}
+        <Product/>
       </div>
+      <Footer />
     </div>
   );
 }
