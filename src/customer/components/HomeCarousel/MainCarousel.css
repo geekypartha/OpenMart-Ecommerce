@@ -1,0 +1,15 @@
+.mainCarousel{
+    height: 30vw;
+    width: 100%;
+    margin-top: 80px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   
+}
+
+.mainCarousel img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}

@@ -1,48 +1,91 @@
-
-import { Fragment, useState } from 'react'
-import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
-import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { navigation } from './navigationData'
-import { Avatar, Button, Menu, MenuItem, ThemeProvider, Typography } from '@mui/material'
-import { deepPurple } from '@mui/material/colors'
-
-
-
+import { Fragment, useEffect, useState } from "react";
+import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
+import {
+  Bars3Icon,
+  MagnifyingGlassIcon,
+  ShoppingBagIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
+import { navigation } from "./navigationData";
+import {
+  Avatar,
+  Button,
+  Menu,
+  MenuItem,
+  ThemeProvider,
+  Typography,
+} from "@mui/material";
+import { deepPurple } from "@mui/material/colors";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import AuthModal from "../../Auth/AuthModal";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser, logout } from "../../../State/Auth/Action";
+import { getCart } from "../../../State/Cart/Action";
+import logo from '../../../Logo/Open2.png'
 
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function Navigation() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
   const [openAuthModal, setOpenAuthModal] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const openUserMenu = Boolean(anchorEl);
   const jwt = localStorage.getItem("jwt");
+  const { auth, cart } = useSelector((store) => store);
+  const dispatch = useDispatch();
 
-  const handleUserClick = (event)=>{
+  const handleUserClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleCloseUserMenu = (event)=>{
+  const handleCloseUserMenu = (event) => {
     setAnchorEl(null);
   };
 
-  const handleOpen =()=>{
+  const handleOpen = () => {
     setOpenAuthModal(true);
   };
 
-  const handleClose = ()=>{
+  const handleClose = () => {
     setOpenAuthModal(false);
+    
   };
 
-  const handleCategoryClick = (category, section, item, close)=>{
-    //navigate(`/${category.id}/${section.id}/${item.id}`);
+  const handleCategoryClick = (category, section, item, close) => {
+    navigate(`/${category.id}/${section.id}/${item.id}`);
     close();
   };
 
+  const handleCategoryClickMobile = (category, section, item) => {
+    navigate(`/${category.id}/${section.id}/${item.id}`);
+    //close();
+  };
 
+  useEffect(() => {
+    if (jwt) {
+      dispatch(getUser(jwt));
+      dispatch(getCart(jwt));
+    }
+  }, [jwt, auth.jwt]);
+
+  useEffect(() => {
+    if (auth.user) {
+      handleClose();
+    }
+    if (location.pathname === "/login" || location.pathname === "/register") {
+      navigate(-1);
+    }
+  }, [auth.user]);
+
+  const handleLogout=()=>{
+    dispatch(logout())
+    handleCloseUserMenu()
+  }
 
   return (
     <div className="bg-white">
@@ -94,8 +137,8 @@ export default function Navigation() {
                           className={({ selected }) =>
                             classNames(
                               selected
-                                ? "font-jost-medium border-black text-black"
-                                : "font-jost-medium border-transparent text-gray-400",
+                                ? "font-jost-medium text-black"
+                                : "font-jost-medium text-gray-400",
                               "flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium"
                             )
                           }
@@ -127,11 +170,17 @@ export default function Navigation() {
                               {section.items.map((item) => (
                                 <li
                                   key={item.name}
-                                  className="flow-root font-jost-light "
+                                  className="flow-root text-gray-500 font-jost-medium "
                                 >
                                   <a
-                                    href={item.href}
-                                    className="-m-2 block p-2 text-gray-500"
+                                    onClick={() =>
+                                      handleCategoryClickMobile(
+                                        category,
+                                        section,
+                                        item
+                                      )
+                                    }
+                                    className="-m-2 ml-4 block p-2  cursor-pointer hover:text-gray-800"
                                   >
                                     {item.name}
                                   </a>
@@ -160,20 +209,38 @@ export default function Navigation() {
 
                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                   <div className="flow-root font-jost-medium">
-                    <a
-                      href="#"
-                      className="-m-2 block p-2 font-jost-medium font-medium text-gray-900"
-                    >
-                      Sign in
-                    </a>
-                  </div>
-                  <div className="flow-root font-jost-medium">
-                    <a
-                      href="#"
-                      className="-m-2 block p-2 font-medium text-gray-900"
-                    >
-                      Create account
-                    </a>
+                    {auth.user ? (
+                      <Button
+                        sx={{
+                          color: "black",
+                          fontFamily: "jost-medium",
+                          bgcolor: "white",
+                          ":hover": {
+                            bgcolor: "#fff",
+                            color: "#FFA800",
+                            boxShadow: "none",
+                          },
+                        }}
+                      >
+                        Your Profile
+                      </Button>
+                    ) : (
+                      <Button
+                        onClick={handleOpen}
+                        sx={{
+                          color: "black",
+                          fontFamily: "jost-medium",
+                          bgcolor: "white",
+                          ":hover": {
+                            bgcolor: "#fff",
+                            color: "#FFA800",
+                            boxShadow: "none",
+                          },
+                        }}
+                      >
+                        Sign in
+                      </Button>
+                    )}
                   </div>
                 </div>
 
@@ -196,14 +263,10 @@ export default function Navigation() {
         </Dialog>
       </Transition.Root>
 
-      <header className="relative bg-white z-[20] ">
-        <p className="flex h-14 items-center justify-center bg-black font-jost-light px-4 text-md font-medium text-white sm:px-6 lg:px-8">
-          Get free delivery on orders over Rs500
-        </p>
-
+      <header className="relative  bg-white z-[20] ">
         <nav
           aria-label="Top"
-          className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+          className="mx-auto fixed top-0 left-0 right-0 bg-white  px-4 sm:px-6 lg:px-8"
         >
           <div>
             <div className="flex h-16 items-center ">
@@ -218,19 +281,15 @@ export default function Navigation() {
               </button>
 
               {/* Logo */}
-              <div className="ml-4 flex lg:ml-0">
-                <a href="#">
+              <div className="ml-4 flex lg:ml-48">
+                <Link to="/">
                   <span className="sr-only">OpenMart</span>
-                  <img
-                    className="h-8  w-auto "
-                    src="image/open2.png"
-                    alt="openmart"
-                  />
-                </a>
+                  <img className="h-8  w-auto " src={logo} alt="openmart" />
+                </Link>
               </div>
 
               {/* Flyout menus */}
-              <Popover.Group className="hidden  lg:ml-48 lg:px-32 lg:block  z-10 ">
+              <Popover.Group className="hidden ml-auto  lg:px-32 lg:block  z-10 ">
                 <div className="flex justify-center h-full space-x-12">
                   {navigation.categories.map((category) => (
                     <Popover key={category.name} className="flex">
@@ -274,6 +333,13 @@ export default function Navigation() {
                                           key={item.name}
                                           className="group relative text-base sm:text-sm text-gray-400  font-jost-medium"
                                         >
+                                          <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
+                                            <img
+                                              src={item.imageSrc}
+                                              alt={item.imageAlt}
+                                              className="object-cover object-center"
+                                            />
+                                          </div>
                                           <a
                                             href={item.href}
                                             className="mt-6 block text-base text-gray-900 font-jost-medium"
@@ -353,9 +419,9 @@ export default function Navigation() {
                 </div>
               </Popover.Group>
 
-              <div className="flex ml-auto items-center">
+              <div className="flex ml-auto lg:mr-48 items-center">
                 {/* Search */}
-                <div className=" flex mr-6">
+                {/* <div className=" flex mr-6">
                   <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
                     <span className="sr-only">Search</span>
                     <MagnifyingGlassIcon
@@ -363,10 +429,10 @@ export default function Navigation() {
                       aria-hidden="true"
                     />
                   </a>
-                </div>
+                </div> */}
 
                 <div className="hidden  lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-7">
-                  {true ? (
+                  {auth.user?.firstName ? (
                     <div>
                       <Avatar
                         className="text-white"
@@ -376,12 +442,12 @@ export default function Navigation() {
                         aria-expanded={open ? "true" : undefined}
                         //onclick={handleUserClick}
                         sx={{
-                          bgcolor: deepPurple[500],
+                          bgcolor: "black",
                           color: "white",
                           cursor: "pointer",
                         }}
                       >
-                        P
+                        {auth.user?.firstName[0].toUpperCase()}
                       </Avatar>
 
                       <Menu
@@ -399,14 +465,25 @@ export default function Navigation() {
                             Profile
                           </MenuItem>
                         </Typography>
-                        <MenuItem>My Orders</MenuItem>
-                        <MenuItem>Logout</MenuItem>
+                        <MenuItem onClick={() => navigate("/account/order")}>
+                          My Orders
+                        </MenuItem>
+                        <MenuItem onClick={handleLogout}>Logout</MenuItem>
                       </Menu>
                     </div>
                   ) : (
                     <Button
                       onClick={handleOpen}
-                      className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                      sx={{
+                        color: "black",
+                        fontFamily: "jost-medium",
+                        bgcolor: "white",
+                        ":hover": {
+                          bgcolor: "#fff",
+                          color: "#FFA800",
+                          boxShadow: "none",
+                        },
+                      }}
                     >
                       Sign in
                     </Button>
@@ -414,14 +491,17 @@ export default function Navigation() {
                 </div>
 
                 {/* Cart */}
-                <div className="ml-4 flow-root lg:ml-6">
-                  <Button className="group -m-2 flex items-center p-2">
+                <div className="ml-4 flow-root lg:ml-2">
+                  <Button
+                    onClick={() => navigate("/cart")}
+                    className="group flex items-center p-0"
+                  >
                     <ShoppingBagIcon
                       className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
                     />
                     <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                      0
+                      {cart.cart?.totalItem}
                     </span>
                     <span className="sr-only">items in cart, view bag</span>
                   </Button>
@@ -431,6 +511,7 @@ export default function Navigation() {
           </div>
         </nav>
       </header>
+      <AuthModal handleClose={handleClose} open={openAuthModal} />
     </div>
   );
 }

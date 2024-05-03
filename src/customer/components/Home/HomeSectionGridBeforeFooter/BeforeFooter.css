@@ -1,0 +1,85 @@
+@font-face {
+    font-family: nike;
+    src: url(../fonts/Nike-Futura-ot-300.ttf);
+}
+
+@font-face {
+    font-family: nike2;
+    src: url(../fonts/HelveticaNowDisplayMedium.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+#page1 {
+    min-height: 100vh;
+    width: 100%;
+
+}
+
+#page1-top h3 {
+    padding: 5vw 2vw 2vw 2vw;
+    font-family: nike2;
+    font-size: 2vw;
+}
+
+#page1-elements {
+    height: 40vw;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2vw;
+
+}
+
+#page1-elements .box {
+    height: 100%;
+    width: 32%;
+   position: relative;
+}
+
+#page1-elements .box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+#page1-elements .box .hot1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: nike2;
+    font-weight: 600;
+    font-size: 3vw;
+    padding-top: 70%;
+    color: #fff;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transition: all ease .5s;
+}
+
+#page1-elements .box .hot1 p {
+    padding-top: 10px;
+    font-size: 1.5vw;
+
+}
+
+#page1-elements .box:hover .hot1 {
+    opacity: 1;
+    cursor: pointer;
+}

@@ -1,11 +1,14 @@
-import { Button } from '@mui/base'
-import { Grid, Typography } from '@mui/material'
-import React from 'react'
+import { Button } from "@mui/base";
+import { Grid, Typography } from "@mui/material";
+import React from "react";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
-const footer = () => {
+
+const Footer = () => {
+ 
+
   return (
-    <div>
+    <div className="pt-10">
       <Grid
         className="bg-black text-white text-start px-10  font-jost-light"
         container
@@ -13,12 +16,15 @@ const footer = () => {
       >
         <Grid item xs={12} sm={6} md={3}>
           <div>
-            <p className="pb-5 text-xl" >
-              Categories
-            </p>
+            <p className="pb-5 text-xl">Categories</p>
           </div>
           <div>
-            <Button className="pb-5" varient="h6" gutterBottom>
+            <Button
+              
+              className="pb-5"
+              varient="h6"
+              gutterBottom
+            >
               Men's Shirt
             </Button>
           </div>
@@ -44,9 +50,7 @@ const footer = () => {
           </div>
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <p className="pb-5 text-xl" >
-            Information
-          </p>
+          <p className="pb-5 text-xl">Information</p>
           <div>
             <Button className="pb-5" varient="h6" gutterBottom>
               About Us
@@ -74,9 +78,7 @@ const footer = () => {
           </div>
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <p className="pb-5 text-xl" >
-            Useful Links
-          </p>
+          <p className="pb-5 text-xl">Useful Links</p>
           <div>
             <Button className="pb-5" varient="h6" gutterBottom>
               Blog
@@ -104,30 +106,23 @@ const footer = () => {
           </div>
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <p className="pb-5 text-xl" >
-            Newsletter Signup
-          </p>
+          <p className="pb-5 text-xl">Newsletter Signup</p>
           <div>
             <Button className="pb-5 text-start" varient="h6" gutterBottom>
               subscribe to our newsletter for latest update
             </Button>
             <Button className="pb-5 text-start" varient="h6" gutterBottom>
-              <MailOutlineIcon/> support@openmart.com
+              <MailOutlineIcon /> support@openmart.com
             </Button>
           </div>
         </Grid>
-        <Grid className='pt-10'item xs={12}>
-            <p align="center">
-                &copy; 2024 Openmart. All rights reserved.
-            </p>
-            <p align="center">
-                Made with love by geekypartha
-            </p>
-
+        <Grid className="pt-10" item xs={12}>
+          <p align="center">&copy; 2024 Openmart. All rights reserved.</p>
+          <p align="center">Made with love by geekypartha</p>
         </Grid>
       </Grid>
     </div>
   );
-}
+};
 
-export default footer
+export default Footer;

@@ -1,0 +1,200 @@
+@font-face {
+    font-family: nike;
+    src: url(../fonts/Nike-Futura-ot-300.ttf);
+}
+@font-face {
+    font-family: nike2;
+    src: url(../fonts/HelveticaNowDisplayMedium.ttf);
+}
+@font-face {
+    font-family: nexa;
+    src: url(../fonts/Nexa-Heavy.ttf);
+}
+@font-face {
+    font-family: roboto-bold;
+    src: url(../fonts/Roboto-Bold.ttf);
+}
+@font-face {
+    font-family: roboto;
+    src: url(../fonts/Roboto-Medium.ttf);
+}
+
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
+}
+.page1{
+    height: 50vw;
+    width: 100%;
+    /* background-color: #dadada; */
+    position: relative;
+}
+/* .cursor{
+    height: 8.5vw;
+    width: 8.5vw;
+    background-color: #fff;
+    border-radius: 50%;
+    position: fixed;
+    z-index: 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-50%,-50%);
+    mix-blend-mode: difference;
+}
+.cursor h5{
+    font-size: 1.3vw;
+    
+    font-family: nike2;
+} */
+.page1 video{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+}
+.page1-content{
+    height: 100%;
+    width: 100%;
+    /* background-color: rgba(0, 0, 0, 0.241); */
+    position: relative;
+    z-index: 10;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.page1-content h2{
+    font-family: 'nike';
+    font-size: 6vw;
+}
+.page1-content a{
+    border: 2px solid #fff;
+    border-radius: 50px;
+    padding: 1.2vw 5vw;
+    border-color: #fff;
+}
+#page2{
+    min-height: 100vh;
+    width: 100%;
+    
+}
+#page2-top h3{
+    padding: 5vw 2vw 2vw 2vw;
+    font-family: nike2;
+    font-size: 2vw;
+}
+#page2-elements{
+    height: 40vw;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2vw;
+    
+}
+#page2-elements .box{
+    height: 100%;
+    width: 32%;
+    position: relative;
+}
+#page2-elements .box img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+#page2-elements .box .hot1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: nike2;
+    font-weight: 600;
+    font-size: 3vw;
+    padding-top: 70%;
+    color: #fff;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+    background: rgba(0,0,0,0.6);
+    opacity: 0;
+    transition: all ease .5s;
+}
+#page2-elements .box .hot1 p{
+    padding-top: 10px;
+    font-size: 1.5vw;
+   
+}
+#page2-elements .box:hover .hot1{
+    opacity: 1;
+    cursor: pointer;
+}
+
+
+#page3{
+    min-height: 65vw;
+    width: 100%;
+    
+}
+#page3-top h3{
+    padding: 5vw 2vw 2vw 2vw;
+    font-family: nike2;
+    font-size: 2vw;
+}
+#page3-elements{
+    height: 65vw;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2vw;
+}
+#page3-elements .box{
+    height: 100%;
+    width: 49%;
+    position: relative;
+}
+#page3-elements .box img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+#page3-elements .box .hot1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: nike2;
+    font-weight: 600;
+    font-size: 3vw;
+    padding-top: 70%;
+    color: #fff;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transition: all ease .5s;
+}
+
+#page3-elements .box .hot1 p {
+    padding-top: 10px;
+    font-size: 1.5vw;
+
+}
+
+#page3-elements .box:hover .hot1 {
+    opacity: 1;
+    cursor: pointer;
+}

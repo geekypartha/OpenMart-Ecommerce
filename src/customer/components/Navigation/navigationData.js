@@ -6,17 +6,16 @@ export const navigation = {
       featured: [
         {
           name: "New Arrivals",
-          href: "/",
+          href: "/women/clothing/lengha_choli",
           imageSrc:
-            "https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg",
-          imageAlt:
-            "Models sitting back to back, wearing Basic Tee in black and bone.",
+            "https://www.ethnicplus.in/media/catalog/product/cache/1d5df636cf8c8988ea2d2c570bb7c21d/7/3/7315_1_.jpg",
+          imageAlt: "",
         },
         {
-          name: "Basic Tees",
-          href: "/",
+          name: "Designer Saree",
+          href: "/women/clothing/saree",
           imageSrc:
-            "https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg",
+            "https://www.ethnicplus.in/media/catalog/product/cache/1d5df636cf8c8988ea2d2c570bb7c21d/1/0/1005_2__1.jpg",
           imageAlt:
             "Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.",
         },
@@ -27,13 +26,13 @@ export const navigation = {
           name: "Clothing",
           items: [
             { name: "Tops", id: "top", href: `{women/clothing/tops}` },
-            { name: "Dresses", id: "women_dress", href: "#" },
+            { name: "Dresses", id: "women_dress" },
             { name: "Women Jeans", id: "women_jeans" },
             { name: "Lengha Choli", id: "lengha_choli" },
             { name: "Sweaters", id: "sweater" },
             { name: "T-Shirts", id: "t-shirt" },
             { name: "Jackets", id: "jacket" },
-            { name: "Gouns", id: "gouns" },
+            { name: "Kurta Sets", id: "kurta_set" },
             { name: "Sarees", id: "saree" },
             { name: "Kurtas", id: "kurtas" },
           ],
@@ -43,11 +42,10 @@ export const navigation = {
           name: "Accessories",
           items: [
             { name: "Watches", id: "watch" },
-            { name: "Wallets", id: "wallet" },
+            { name: "Shoes", id: "shoe" },
             { name: "Bags", id: "bag" },
-            { name: "Sunglasses", id: "sunglasse" },
+            { name: "Sunglasses", id: "sunglass" },
             { name: "Hats", id: "hat" },
-            { name: "Belts", id: "belt" },
           ],
         },
         {
@@ -69,19 +67,17 @@ export const navigation = {
       featured: [
         {
           name: "New Arrivals",
-          id: "#",
+          href: "/men/clothing/shirts",
           imageSrc:
-            "https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg",
-          imageAlt:
-            "Drawstring top with elastic loop closure and textured interior padding.",
+            "https://rukminim2.flixcart.com/image/612/612/xif0q/shirt/d/v/z/m-hlsh014060-highlander-original-imagkc3mzqgunvfd.jpeg?q=70",
+          imageAlt: "",
         },
         {
           name: "Artwork Tees",
-          id: "#",
+          href: "/men/clothing/t-shirts",
           imageSrc:
-            "https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg",
-          imageAlt:
-            "Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.",
+            "https://rukminim2.flixcart.com/image/612/612/xif0q/t-shirt/c/f/r/s-vd-os-100-frgorgnl-sw-veirdo-original-imagp8yvrkmg6njs.jpeg?q=70",
+          imageAlt: "",
         },
       ],
       sections: [
@@ -90,24 +86,23 @@ export const navigation = {
           name: "Clothing",
           items: [
             { name: "Mens Kurtas", id: "mens_kurta" },
-            { name: "Shirt", id: "shirt" },
+            { name: "Shirt", id: "shirts" },
             { name: "Men Jeans", id: "men_jeans" },
-            { name: "Sweaters", id: "#" },
-            { name: "T-Shirts", id: "t-shirt" },
-            { name: "Jackets", id: "#" },
-            { name: "Activewear", id: "#" },
+            { name: "Sweaters", id: "sweaters" },
+            { name: "T-Shirts", id: "t-shirts" },
+            { name: "Jackets", id: "jackets" },
+            { name: "Blazers", id: "blazers" },
           ],
         },
         {
           id: "accessories",
           name: "Accessories",
           items: [
-            { name: "Watches", id: "#" },
-            { name: "Wallets", id: "#" },
-            { name: "Bags", id: "#" },
-            { name: "Sunglasses", id: "#" },
-            { name: "Hats", id: "#" },
-            { name: "Belts", id: "#" },
+            { name: "Watches", id: "watchs" },
+            { name: "Wallets", id: "wallet" },
+            { name: "Shoes", id: "shoes" },
+            { name: "Bags", id: "bags" },
+            { name: "Sunglasses", id: "sunglasses" },
           ],
         },
         {
@@ -124,7 +119,7 @@ export const navigation = {
     },
   ],
   pages: [
-    { name: "Company", id: "/" },
-    { name: "Stores", id: "/" },
+    { name: "Kids", id: "/" },
+    { name: "Beauty", id: "/" },
   ],
 };
