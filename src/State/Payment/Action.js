@@ -17,8 +17,8 @@ export const createPayment = (orderId) => async (dispatch) => {
 
   try {
 
-    const { data } = await axios.post(
-      `${API_BASE_URL}/api/payments/${orderId}`,
+    const { data } = await api.post(
+      `$/api/payments/${orderId}`,
       
     );
     console.log("data", data);
