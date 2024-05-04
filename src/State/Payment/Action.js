@@ -1,4 +1,4 @@
-import { api } from "../../config/apiConfig";
+import { API_BASE_URL, api } from "../../config/apiConfig";
 import {
   CREATE_PAYMENT_REQUEST,
   CREATE_PAYMENT_SUCCESS,
@@ -17,9 +17,9 @@ export const createPayment = (orderId) => async (dispatch) => {
 
   try {
 
-    const { data } = await api.post(
-      `/api/payments/${orderId}`,
-      {}
+    const { data } = await axios.post(
+      `${API_BASE_URL}/api/payments/${orderId}`,
+      
     );
     console.log("data", data);
 
