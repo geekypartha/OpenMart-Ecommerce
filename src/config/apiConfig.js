@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// export const API_BASE_URL = "http://localhost:5000"; for local host
+
 export const API_BASE_URL = "https://openmart-node-api.onrender.com/"; // for production
 
 const jwt = localStorage.getItem("jwt");
