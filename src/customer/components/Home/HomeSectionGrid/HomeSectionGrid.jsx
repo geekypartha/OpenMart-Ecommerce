@@ -2,7 +2,7 @@ import React from 'react'
 import video1 from '../Videos/video1.mp4'
 import './HomeSectionGrid.css';
 import './HomeSection';
-import { Helmet } from 'react-helmet';
+// import { Helmet } from 'react-helmet';
 import image1 from '../Images/men-shirt.jpeg'
 import image2 from '../Images/crop-top.jpeg'
 import image3 from '../Images/T-shirt.jpeg'

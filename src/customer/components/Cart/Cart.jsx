@@ -29,8 +29,8 @@ const Cart = () => {
   };
 
   useEffect(()=>{
-    dispatch(getCart());
-  },[ cart.updateCartItem, cart.deleteCartItem]);
+    dispatch(getCart(jwt));
+  },[jwt, cart.updateCartItem, cart.deleteCartItem]);
 
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
