@@ -21,8 +21,8 @@ import AuthModal from "../../Auth/AuthModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, logout } from "../../../State/Auth/Action";
 import { getCart } from "../../../State/Cart/Action";
-import logo from '../../../Logo/Open2.png'
-
+import logo from "../../../Logo/Open2.png";
+import ProfileModal from "../../Profile/ProfileModal";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -33,6 +33,7 @@ export default function Navigation() {
   const navigate = useNavigate();
   const location = useLocation();
   const [openAuthModal, setOpenAuthModal] = useState(false);
+  const [openProfileModal, setOpenProfileModal] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const openUserMenu = Boolean(anchorEl);
   const jwt = localStorage.getItem("jwt");
@@ -53,7 +54,15 @@ export default function Navigation() {
 
   const handleClose = () => {
     setOpenAuthModal(false);
-    
+  };
+
+  //profile
+  const profileOpen = () => {
+    setOpenProfileModal(true);
+  };
+
+  const profileClose = () => {
+    setOpenProfileModal(false);
   };
 
   const handleCategoryClick = (category, section, item, close) => {
@@ -82,10 +91,10 @@ export default function Navigation() {
     }
   }, [auth.user]);
 
-  const handleLogout=()=>{
-    dispatch(logout())
-    handleCloseUserMenu()
-  }
+  const handleLogout = () => {
+    dispatch(logout());
+    handleCloseUserMenu();
+  };
 
   return (
     <div className="bg-white">
@@ -211,6 +220,7 @@ export default function Navigation() {
                   <div className="flow-root font-jost-medium">
                     {auth.user ? (
                       <Button
+                      onClick={profileOpen}
                         sx={{
                           color: "black",
                           fontFamily: "jost-medium",
@@ -461,9 +471,7 @@ export default function Navigation() {
                         }}
                       >
                         <Typography varient="h2" gutterBottom>
-                          <MenuItem onClick={handleCloseUserMenu}>
-                            Profile
-                          </MenuItem>
+                          <MenuItem onClick={profileOpen}>Profile</MenuItem>
                         </Typography>
                         <MenuItem onClick={() => navigate("/account/order")}>
                           My Orders
@@ -512,6 +520,7 @@ export default function Navigation() {
         </nav>
       </header>
       <AuthModal handleClose={handleClose} open={openAuthModal} />
+      <ProfileModal handleClose={profileClose} open={openProfileModal}/>
     </div>
   );
 }

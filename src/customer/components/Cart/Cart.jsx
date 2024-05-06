@@ -72,7 +72,7 @@ const Cart = () => {
             </Table>
           </TableContainer>
 
-          {cart.cart?.cartItems.map((item) => (
+          {cart.cart?.cartItems?.map((item) => (
             <CartItem item={item} />
           ))}
         </div>
