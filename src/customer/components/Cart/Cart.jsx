@@ -30,7 +30,7 @@ const Cart = () => {
 
   useEffect(()=>{
     dispatch(getCart(jwt));
-  },[jwt, cart.updateCartItem, cart.deleteCartItem]);
+  },[jwt, cart.getCart, cart.updateCartItem, cart.deleteCartItem]);
 
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -72,7 +72,7 @@ const Cart = () => {
             </Table>
           </TableContainer>
 
-          {cart.cart?.cartItems?.map((item) => (
+          {cart.cart?.cartItems.map((item) => (
             <CartItem item={item} />
           ))}
         </div>
