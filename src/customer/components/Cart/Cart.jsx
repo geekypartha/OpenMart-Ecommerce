@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import CartItem from './CartItem'
 
 import { useDispatch, useSelector } from "react-redux";
-import { getCart } from '../../../State/Cart/Action';
+import { addItemToCart, getCart } from '../../../State/Cart/Action';
 import { Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
@@ -20,8 +20,8 @@ import {
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const {cart} = useSelector((store)=>store);
   const jwt = localStorage.getItem("jwt");
+  const {auth,cart} = useSelector((store)=>store);
   const navigate = useNavigate();
 
   const handleCheckout = () => {
@@ -29,8 +29,9 @@ const Cart = () => {
   };
 
   useEffect(()=>{
+   
     dispatch(getCart(jwt));
-  },[jwt, cart.getCart, cart.updateCartItem, cart.deleteCartItem]);
+  },[jwt, auth.jwt, getCart, cart.addItemToCart, cart.updateCartItem, cart.deleteCartItem]);
 
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -73,7 +74,9 @@ const Cart = () => {
           </TableContainer>
 
           {cart.cart?.cartItems.map((item) => (
-            <CartItem item={item} />
+            <>
+              <CartItem item={item} showButton={true} />
+            </>
           ))}
         </div>
       </div>

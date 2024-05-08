@@ -31,13 +31,13 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
-const CartItem = ({item}) => {
+const CartItem = ({item, showButton}) => {
 
   const dispatch = useDispatch();
   const jwt = localStorage.getItem("jwt");
 
   const handleUpdateCartItem=(num)=>{
-    const data = {data:{quantity:item.quantity+num},cartItemId:item?._id};
+    const data = {data:{quantity:item.quantity+num},cartItemId:item?._id,jwt};
     console.log("update data", data);
     dispatch(updateCartItem(data));
   }
@@ -69,29 +69,29 @@ const CartItem = ({item}) => {
                       <div className="w-[5rem] h-[7rem] lg:w-[9rem] lg:h-[12rem]">
                         <img
                           className="h-full w-full object-cover object-top"
-                          src={item.product?.imageUrl}
+                          src={item?.product?.imageUrl}
                           alt=""
                         />
                       </div>
                       <div className="ml-5 space-y-2">
                         <p className="font-semibold text-sm lg:text-md  font-jost-medium">
-                          {item.product.title}
+                          {item?.product?.title}
                         </p>
                         <p className="text-sm opacity-70 font-jost-medium">
-                          Size: {item.size},{item.product.color}
+                          Size: {item?.size},{item?.product?.color}
                         </p>
                         <p className="text-sm opacity-70 font-jost-medium">
-                          Seller:{item.product.brand}
+                          Seller:{item?.product?.brand}
                         </p>
                         <div className="flex space-x-3 items-center text-lg lg:text-xl text-gray-900 lg:pt-7">
                           <p className="font-seoge-ui line-through text-gray-700">
-                            ₹{item.product.price}
+                            ₹{item?.product?.price}
                           </p>
                           <p className="font-semibold text-md font-seoge-ui text-red-600">
-                            ₹{item.product.discountedPrice}
+                            ₹{item?.product?.discountedPrice}
                           </p>
                           <p className="font-seoge-ui font-semibold text-gray-600">
-                            {item.product.discountPersent}% off
+                            {item?.product?.discountPersent}% off
                           </p>
                         </div>
                       </div>
